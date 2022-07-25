@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--一个mapper对应一个接口 #{}可对应名字取出参数,也可改名取出@Param("")-->
+    <mapper namespace="com.hao.dao.UserMapper">
+    <insert id="addUser" parameterType="User">
+        insert into springtest.user (userName,userAge,userAddress)
+        values (#{userName},#{userAge},#{userAddress})
+    </insert>
+    <delete id="deleteUser" parameterType="Integer">
+        delete from springtest.user where userId=#{userId}
+    </delete>
+    <update id="updateUser" parameterType="User">
+        update springtest.user set userName=#{userName},userAge=#{userAge},userAddress=#{userAddress} where userId=#{userId}
+    </update>
+    <select id="queryUserById" parameterType="Integer" resultType="User">
+        select * from springtest.user where userId=${userId};
+    </select>
+    <select id="queryExist" parameterType="User" resultType="Integer">
+        select * from springtest.user where userName=#{userName} and userAge=#{userAge}
+    </select>
+<!--    可在相应方法上加注释@Select如下一样的效果-->
+    <select id="queryAllUser" resultType="com.hao.pojo.User">
+        select * from springtest.user;
+    </select>
+
+</mapper>

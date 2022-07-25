@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd">
+<!--spring整合service-->
+    <!--1.扫描service下的包 @Service注解下的类-->
+    <context:component-scan base-package="com.hao.service"></context:component-scan>
+
+    <!--2.将所有的业务类注入到spring中，可以通过配置或注解实现
+        ByName根据名字取出对象
+    -->
+    <bean id="userServiceImp" class="com.hao.service.UserServiceImp">
+    <!--此处ref引用自动调用类里面的setUserMapper()注入名字为name的属性-->
+        <property name="userMapper" ref="userMapper"></property>
+    </bean>
+
+    <!--3.声明式事务配置-->
+    <bean id="dataSourceTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <!--注入数据源-->
+        <property name="dataSource" ref="myDataSource"></property>
+    </bean>
+    <!--4..AOP事务支持，暂时用不到-->
+</beans>
