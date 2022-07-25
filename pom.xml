@@ -129,7 +129,7 @@
             </resource>
         </resources>
         <plugins>
-            <!-- 指定package打包插件版本-->
+            <!-- 指定package打包插件版本  -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
